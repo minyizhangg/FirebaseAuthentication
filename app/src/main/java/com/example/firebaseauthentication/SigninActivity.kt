@@ -33,8 +33,13 @@ class SigninActivity : AppCompatActivity() {
 
                     firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener{
                         if(it.isSuccessful){
-                            val intent = Intent(this, MainActivity::class.java)
+                            val email = binding.emailEt.text.toString() // Assuming you're using email for username
+                            val intent = Intent(this, ProfileActivity::class.java)
+                            intent.putExtra("email", email)
                             startActivity(intent)
+
+
+
                         }else{
                             Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
@@ -44,4 +49,5 @@ class SigninActivity : AppCompatActivity() {
             }
         }
     }
+
 }
